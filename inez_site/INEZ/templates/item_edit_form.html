@@ -1,0 +1,29 @@
+<form action="" method="post" id="modal_form" data-index-number="">
+  {% csrf_token %}
+  <div class="inputContainer">
+      <input type="text" id="title" class="entryName" value="{{ item.title }}" name="title" required>
+      <label for="title">Artikel</label>
+  </div>
+  <div class="inputContainer">
+      <input type="text" id="unit" class="entryName" value="{{ item.unit }}" placeholder="Zum Beispiel: 1 kg" name="unit" required>
+      <label for="title">Einheit</label>
+  </div>
+  <div class="inputContainer half right last">
+      <input type="number" placeholder="1" id="quantity" value="{{ item.quantity }}" class="itemPrice" name="quantity" min="1" required>
+      <label for="quantity">Menge</label>
+  </div>
+  <div class="inputContainer half last">
+      <input type="number" placeholder="1" id="price" value="{{ item.price }}" class="itemPrice" name="price" min="0.01" step="0.01" required>
+      <label for="quantity">Preis</label>
+  </div>
+    </form>
+<!-- <hr>
+<strong>Eigene Werte eingeben:</strong>
+<div class="inputContainer">
+  <input type="text" id="title" class="entryName" placeholder="Zum Beispiel: Milch" name="title" required>
+  <label for="title">Artikel</label>
+</div>
+<div class="inputContainer last">
+  <input type="number" placeholder="1" id="quantity" class="itemPrice" name="quantity" min="1" required>
+  <label for="quantity">Menge</label>
+</div> -->

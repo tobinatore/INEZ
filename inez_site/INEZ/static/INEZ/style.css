@@ -1,0 +1,358 @@
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+/* app */
+html {
+    font-size: 100%;
+}
+body {
+    background: url('../INEZ/img/blackboard.jpg');
+    font-family: 'Open Sans',sans-serif;
+}
+/* super basic grid structure */
+.container {
+    width: 600px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 20px 0;
+    margin-top: 50px;
+    -webkit-box-shadow: 0 0 2px rgba(0,0,0,0.2);
+            box-shadow: 0 0 2px rgba(0,0,0,0.2);
+
+}
+
+.rips {
+  background: #ffffff;
+  content: "";
+  height: 20px;
+  width: 600px;
+  margin: 0 auto;
+
+  clip-path: polygon(0% 0%, 5% 100%, 10% 0%, 15% 100%, 20% 0%, 25% 100%, 30% 0%, 35% 100%, 40% 0%, 45% 100%, 50% 0%, 55% 100%, 60% 0%, 65% 100%, 70% 0%, 75% 100%, 80% 0%, 85% 100%, 90% 0%, 95% 100%, 100% 0%);
+
+}
+
+.row {
+    display: block;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    clear: both;
+    overflow: hidden;
+}
+.half {
+    width: 50%;
+    float: left;
+}
+.content {
+    background: #fff;
+  }
+/* logo */
+h1 {
+    font-family: 'Red Hat Display', sans-serif, black;
+    color: #1561AC;
+    text-align: center;
+    font-weight: 400;
+    margin: 0;
+}
+.tagline {
+    margin-top: -10px;
+    text-align: center;
+    padding: 5px 20px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #1561AC;
+}
+.highlight{
+	color : #F8EC00;
+}
+/* inputs */
+.inputContainer {
+    height: 60px;
+    border-top: 1px solid #e5e5e5;
+    position: relative;
+    overflow: hidden;
+}
+.inputContainer.last {
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 20px;
+}
+.inputContainer.half.last.right {
+    border-left: 1px solid #efefef;
+}
+input[type="text"], input[type="number"], select {
+    height: 100%;
+    width: 100%;
+    padding: 0 20px;
+    position: absolute;
+    top: 0;
+    vertical-align: middle;
+    display: inline-block;
+    border: none;
+    border-radius: none;
+    font-size: 13px;
+    color: #777;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    -webkit-transition: background 0.3s;
+            transition: background 0.3s;
+}
+
+input[type="text"]:focus, select:focus {
+    outline: none;
+    background: #ecf0f1;
+}
+::-webkit-input-placeholder {
+    color: lightgrey;
+    font-weight: normal;
+    -webkit-transition: all 0.3s;
+            transition: all 0.3s;
+}
+::-moz-placeholder {
+    color: lightgrey;
+    font-weight: normal;
+    transition: all 0.3s;
+}
+::-ms-input-placeholder {
+    color: lightgrey;
+    font-weight: normal;
+    transition: all 0.3s;
+}
+input:-moz-placeholder {
+    color: lightgrey;
+    font-weight: normal;
+    transition: all 0.3s;
+}
+input:focus::-webkit-input-placeholder {
+    color: #95a5a6;
+    font-weight: bold;
+}
+input:focus::-moz-input-placeholder {
+    color: #95a5a6;
+    font-weight: bold;
+}
+.inputContainer label {
+    padding: 5px 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #777;
+    display: block;
+    position: absolute;
+}
+button {
+    font-family: 'Open Sans', sans-serif;
+    background: transparent;
+    border-radius: 2px;
+    border: none;
+    outline: none;
+    height: 50px;
+    font-size: 14px;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    padding-left: 30px;
+    padding-right: 15px;
+}
+.icon {
+    position: absolute;
+    top: 30%;
+    left: 10px;
+    font-size: 20px;
+}
+.itemAdd {
+    background: #1561AC;
+    padding-left: 30px;
+}
+.itemAdd:hover {
+    background: #167baa;
+}
+.itemDelete {
+    background: #F8EC00;
+    padding-left: 31px;
+}
+.itemDelete:hover {
+    background: #f7c500;
+}
+.itemAlternative {
+  color: #167BAA;
+  display: block;
+  margin-right: 30px;
+  float: right;
+  width: auto;
+  height: 20px;
+  font-size: 10px;
+  margin-bottom: 10px;
+
+}
+/* task styles */
+.itemList {
+    list-style: none;
+    padding: 0 20px;
+}
+.itemEntry {
+    border-top: 1px solid #e5e5e5;
+    padding: 15px 0;
+    color: #777;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+.priceEntry {
+    border-top: 1px solid #e5e5e5;
+    padding: 15px 0;
+    color: #777;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+.itemList .itemEntry:nth-child(even) {
+    background: #f7f7f9;
+}
+.itemCheckbox {
+    margin-right: 1em;
+}
+.complete-true {
+    text-decoration:  line-through;
+    color: #bebebe;
+}
+.itemList .itemUnit{
+    color: #95a5a6;
+    font-size: 10px;
+    font-weight: bold;
+    display: block;
+    margin-left: 41px;
+}
+
+.itemUnit-modal{
+  color: #95a5a6;
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  display: block;
+  margin-left: 10px;
+}
+
+.price {
+    display: inline-block;
+    font-size: 10px;
+    background: #444;
+    vertical-align: middle;
+    color: #fff;
+    padding: 10px;
+    width: 75px;
+    text-align: center;
+    border-radius: 2px;
+    float: right;
+    font-weight: normal;
+    text-transform: uppercase;
+    margin-right: 20px;
+}
+
+.qty {
+    display: inline-block;
+    font-size: 10px;
+    background: #dddddd
+    color: #aaaaaa
+    vertical-align: middle;
+    padding: 10px;
+    width: 75px;
+    text-align: center;
+    border-radius: 2px;
+    float: right;
+    font-weight: normal;
+    text-transform: uppercase;
+    margin-right: 20px;
+}
+
+footer {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #777;
+}
+footer a {
+    color: #f39c12;
+}
+/* custom checkboxes */
+.itemCheckbox {
+    -webkit-appearance: none;
+            appearance: none;
+    -webkit-transition: all 0.3s;
+            transition: all 0.3s;
+    display: inline-block;
+    cursor: pointer;
+    width: 19px;
+    height: 19px;
+    vertical-align: middle;
+    margin-left: 4px;
+
+}
+.itemCheckbox:focus {
+    outline: none;
+}
+.itemCheckbox:before, .itemCheckbox:checked:before {
+    font-family: 'FontAwesome';
+    color: #444;
+    font-size: 20px;
+    -webkit-transition: all 0.3s;
+            transition: all 0.3s;
+}
+.itemCheckbox:before {
+    content: '\f096';
+}
+.itemCheckbox:checked:before {
+    content: '\f14a';
+    color: #1561AC;
+}
+
+.loading {
+    background: transparent url('../INEZ/img/spinner.gif') no-repeat scroll center center;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.clickable:hover {
+  background: #d6ebff !important;
+}
+
+.edit {
+  background: #1561AC;
+  opacity: 0;
+  display: block;
+  transition: opacity ease 0.8s;
+  color: #ffffff;
+  margin-bottom: -15px;
+  height: 30px;
+  margin-top: 15px;
+}
+
+.edit:hover{
+  background: #167baa !important;
+}
+
+a.edit:hover {
+  text-decoration: none;
+}
+
+.edit > p{
+  width: 75px;
+  line-height: 30px;
+  margin: auto;
+  color: #ffffff;
+}
+.itemEntry:hover > .edit {
+  opacity: 1;
+}

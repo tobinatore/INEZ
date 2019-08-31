@@ -1,0 +1,28 @@
+<form action="" method="post" id="modal_form" data-index-number="">
+  {% csrf_token %}
+  <ul class="itemList">
+    <!-- Django template for-loop -->
+    {% for item in items %}
+    <div class="clickable" id="{{ item.0 }}" onclick="submitForm()">
+      <li class="itemEntry " ">
+        <div style="margin-left: 10px;">
+          <span>{{ item.1|wordwrap:30|linebreaksbr }}</span>
+        </div>
+        <span class="price">{{ item.2 }}€</span>
+
+        <strong class="itemUnit-modal">{{ item.3 }}</strong>
+          <br>
+        </li>
+      </div>
+        {% endfor %}
+    </form>
+<!-- <hr>
+<strong>Eigene Werte eingeben:</strong>
+<div class="inputContainer">
+  <input type="text" id="title" class="entryName" placeholder="Zum Beispiel: Milch" name="title" required>
+  <label for="title">Artikel</label>
+</div>
+<div class="inputContainer last">
+  <input type="number" placeholder="1" id="quantity" class="itemPrice" name="quantity" min="1" required>
+  <label for="quantity">Menge</label>
+</div> -->

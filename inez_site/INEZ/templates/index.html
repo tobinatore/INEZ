@@ -1,0 +1,123 @@
+  {% load static %}
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>INEZ - der INtelligente EinkaufsZettel</title>
+  <link rel="shortcut icon" href="{%  static 'INEZ/img/favicon.ico' %}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Red+Hat+Display:900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'INEZ/style.css' %}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  <script src="../static/INEZ/js/item_edit.js"></script>
+  <script src="../static/INEZ/js/utils.js"></script>
+</head>
+<body>
+
+
+
+<div django-app="TaskManager">
+    <div class="container">
+            <div class="content">
+            <h1>INEZ</h1>
+            <p class="tagline">der <span class="highlight">IN</span>telligente <span class="highlight">E</span>inkaufs<span class="highlight">Z</span>ettel</p>
+
+            <!-- Modal alternative items-->
+            <div class="modal fade" id="alternativesModal" tabindex="-1" role="dialog" aria-labelledby="alternativesModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="alternativesModalLabel">Alternative Produkte:</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Schliessen</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Modal edit item -->
+            <!-- Modal alternative items-->
+            <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Eintrag bearbeiten:</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Schliessen</button>
+                    <button type="button" class="itemAdd" id="btn-save">Speichern</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <form action="" method="post">
+            {% csrf_token %} <!-- csrf token for basic security -->
+
+                <div class="inputContainer">
+                    <input type="text" id="title" class="entryName" placeholder="Zum Beispiel: Milch" name="title" required>
+                    <label for="title">Artikel</label>
+                </div>
+                <div class="inputContainer last">
+                    <input type="number" placeholder="1" id="quantity" class="itemPrice" name="quantity" min="1" required>
+                    <label for="quantity">Menge</label>
+                </div>
+              <!--  <div class="row"> -->
+                <div class="row">
+                    <button class="itemAdd" name="itemAdd" type="submit"><i class="fa fa-plus icon"></i>Zur Liste hinzufügen</button>
+                    <button class="itemDelete" name="itemDelete" formnovalidate="" type="submit" onclick="$('input#sublist').click();"><i class="fa fa-trash-o icon"></i>Artikel löschen</button>
+                </div>
+              {% for message in messages %}
+                <div class="alert {{ message.tags }} alert-dismissible" role="alert" style="text-align: center;">
+                  {{ message }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+            <ul class="itemList">
+            <!-- django template lang - for loop -->
+            {% for item in items %}
+                <li class="itemEntry">
+                    <input type="checkbox" class="itemCheckbox" name="checked" id="{{ item.id }}" value="{{ item.id }}">
+                    <label for="{{ item.id }}"><span class="complete-">{{ item.title|wordwrap:35|linebreaksbr }}</span></label>
+                    <span class="price">{{ item.price }}€</span>
+                    <span class="qty">Menge: {{ item.quantity }}</span>
+                    <strong class="itemUnit">{{ item.unit }}</strong>
+                    <a class="itemAlternative" id="{{ item.id }}" name="itemAlternative" href="{% url 'item-alt' item.id %}"
+                    onclick="openItemAltModal(event, '{{item.id}}'); return false;">Alternativen</a>
+
+                    <a class="edit" id="{{ item.id }}" name="itemAlternative" href="{% url 'item-edit' item.id %}"
+                      onclick="openItemEditModal(event, '{{item.id}}'); return false;"><p>Bearbeiten</p></a>
+
+                </li>
+            {% endfor %}
+
+            <li class="priceEntry">
+              <span>Gesamtpreis:</span>
+              <span class="price">{{ price }}€</span>
+            </ul><!-- itemList -->
+
+          </form>
+      </div><!-- container -->
+</div>
+<div class="rips"></div>
+</body>
+</html>
